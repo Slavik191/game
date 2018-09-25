@@ -1,27 +1,37 @@
 import Game from './game';
-import Character from './Character'
 import '../sass/style.sass';
 
-let character;
+let game;
 
 startGame.addEventListener('click', () => {
     form.style.display = 'none';
-    let game = new Game(fieldSize.value.trim(),
+    game = new Game(fieldSize.value.trim(),
                         numberStorage.value.trim(), 
                         maxNumberBoxStorage.value.trim(),
                         maxNumberBoxCharacter.value.trim());
-    game.createField();
-    character = new Character(maxNumberBoxCharacter.value.trim());
-    let player = document.createElement('div');
-    player.className = 'player';
-    player.id = 'player';
-    player.style.top = `${document.getElementById('00').getBoundingClientRect().top + 21}px`;
-    player.style.left = `${document.getElementById('00').getBoundingClientRect().left + 21}px`;
-    app.appendChild(player);
+    game.grid.createField();
+    game.character.createPlayer()
 })
 
 document.addEventListener('keyup', event => {
     if(event.keyCode === 39){
-        character.right();
+        game.character.right();
+    }
+    if(event.keyCode === 37){
+        game.character.left();
+    }
+    if(event.keyCode === 38){
+        game.character.top();
+    }
+    if(event.keyCode === 40){
+        game.character.bottom();
+    }
+    if(event.keyCode === 32){
+        console.log(game.character.numberBoxCharacter)
+        let numberBoxCell = document.getElementById(`${ game.character.bottomPosition}${  game.character.topPosition}`);
+        if(numberBoxCell !== '' && +numberBoxCell.innerHTML !== 0 && game.character.numberBoxCharacter < game.character.maxNumberBoxCharacter){
+            numberBoxCell.innerHTML -= 1; 
+            game.character.newNumberBoxCharacter = game.character.numberBoxCharacter + 1;
+        }
     }
 })
