@@ -1,8 +1,12 @@
+import Store from './Store'
+
 class Grid{
     constructor(fieldSize, numberStorage, maxNumberBoxStorage){
+        this.store = new Store(fieldSize)
         this.fieldSize = fieldSize;
         this.numberStorage = numberStorage;
         this.maxNumberBoxStorage = maxNumberBoxStorage;
+        this.numberBoxMap = 0;
     }
 
     createField(){
@@ -19,14 +23,18 @@ class Grid{
                 cell.id = `${i}${j}`  
                 positionStorage.forEach(position => {
                     if(position[0] === i && position[1] === j){
-                        cell.style.background = 'black'
-                        cell.innerHTML = `${Math.floor(Math.random() * this.maxNumberBoxStorage)}`
+                        cell.style.background = 'black';
+                        let numberBoxCell = Math.floor(Math.random() * this.maxNumberBoxStorage);
+                        cell.innerHTML = `${numberBoxCell}`;
+                        this.numberBoxMap += numberBoxCell;
                     }
                 })
                 row.appendChild(cell);   
             }
             field.appendChild(row);
         }
+        let store = this.store.createStore();
+        field.appendChild(store);
         app.appendChild(field);
     }
 }

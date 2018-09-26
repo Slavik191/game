@@ -9,8 +9,7 @@ startGame.addEventListener('click', () => {
                         numberStorage.value.trim(), 
                         maxNumberBoxStorage.value.trim(),
                         maxNumberBoxCharacter.value.trim());
-    game.grid.createField();
-    game.character.createPlayer()
+    game.createObjects();
 })
 
 document.addEventListener('keyup', event => {
@@ -27,11 +26,20 @@ document.addEventListener('keyup', event => {
         game.character.bottom();
     }
     if(event.keyCode === 32){
-        console.log(game.character.numberBoxCharacter)
-        let numberBoxCell = document.getElementById(`${ game.character.bottomPosition}${  game.character.topPosition}`);
-        if(numberBoxCell !== '' && +numberBoxCell.innerHTML !== 0 && game.character.numberBoxCharacter < game.character.maxNumberBoxCharacter){
+        let numberBoxCell = document.getElementById(`${ game.character.topPosition}${  game.character.leftPosition}`);    
+        if(numberBoxCell.innerHTML !== '' && +numberBoxCell.innerHTML !== 0 && game.character.numberBoxCharacter < game.character.maxNumberBoxCharacter && numberBoxCell.innerHTML !== 'Склад'){
             numberBoxCell.innerHTML -= 1; 
             game.character.newNumberBoxCharacter = game.character.numberBoxCharacter + 1;
+            game.changeTextBoxCharacter()
         }
+        else if(numberBoxCell.innerHTML === 'Склад' && game.character.numberBoxCharacter > 0){
+            game.character.newNumberBoxCharacter = game.character.numberBoxCharacter - 1;
+            game.grid.store.putStorage();
+            game.changeTextBoxCharacter();
+            if(game.grid.numberBoxMap === game.grid.store.numderBoxStore){
+                console.log("Красавчик")
+            }
+        }
+
     }
 })
