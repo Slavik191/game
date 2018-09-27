@@ -12,20 +12,35 @@ class Grid{
     createField(){
         let positionStorage = [];
         for(let i = 0; i < this.numberStorage; i++){
-            positionStorage.push([Math.floor(Math.random() * this.fieldSize), Math.floor(Math.random() * this.fieldSize)]);
+            let add = true;
+            let left = Math.floor(Math.random() * this.fieldSize);
+            let top =  Math.floor(Math.random() * this.fieldSize)
+            positionStorage.forEach(position => {
+                if(position[0] === left && position[1] === top)
+                    add = false;
+            })
+            if(add)
+                positionStorage.push([left, top])
+            else
+                i--
         }
 
-        let field = document.createElement("table");
+        let field = document.createElement('table');
+        field.id = 'field';
         for(let i = 0; i < this.fieldSize; i++){
-            let row = document.createElement("tr");
+            let row = document.createElement('tr');
             for(let j = 0; j < this.fieldSize; j++){
-                let cell = document.createElement("td");
+                let cell = document.createElement('td');
                 cell.id = `${i}${j}`  
                 positionStorage.forEach(position => {
                     if(position[0] === i && position[1] === j){
                         cell.style.background = 'black';
                         let numberBoxCell = Math.floor(Math.random() * this.maxNumberBoxStorage);
-                        cell.innerHTML = `${numberBoxCell}`;
+                        //cell.innerHTML = `${numberBoxCell}`;
+                        let numberContainer = document.createElement('div');
+                        numberContainer.className = 'numbrBox';
+                        numberContainer.innerHTML = `${numberBoxCell}`
+                        cell.appendChild(numberContainer);
                         this.numberBoxMap += numberBoxCell;
                     }
                 })

@@ -16,7 +16,8 @@ class Game{
 
     createTextBoxCharacter(){
         let text = document.createElement('div');
-        text.className = "textBoxCharacter";
+        text.id = 'textBoxCharacter';
+        text.className = 'textBoxCharacter';
         text.innerHTML = `рюкзак: ${this.character.numberBoxCharacter}/${this.character.maxNumberBoxCharacter}`;
         this.TextBoxCharacter = text;
         document.body.appendChild(text);
