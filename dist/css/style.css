@@ -1,2 +1,78 @@
+body .app {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+body .app form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
 body {
-  background: red; }
+  margin: 0; }
+  body .app {
+    min-width: 100%;
+    min-height: 100vh; }
+    body .app form {
+      position: absolute;
+      top: 0;
+      width: 250px;
+      padding: 20px 15px;
+      z-index: 999;
+      background: rgba(1, 1, 1, 0.7);
+      border-radius: 0 0 10px 10px;
+      transition: .3s; }
+      body .app form input {
+        width: 230px;
+        margin-bottom: 10px;
+        margin: .5rem 0;
+        padding: .5rem;
+        border-radius: 4px;
+        border: 1px solid #ddd; }
+      body .app form input[type=button] {
+        width: auto; }
+      body .app form h2 {
+        color: white; }
+
+@keyframes opac {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+    body .app table {
+      border-collapse: collapse;
+      color: white;
+      table-layout: fixed;
+      margin: 75px 25px 25px 25px;
+      animation: opac .5s linear;
+      transition: .5s; }
+      body .app table tr:last-child {
+        color: black; }
+        body .app table tr:last-child td {
+          border: 0px; }
+      body .app table td {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        border: 1px solid grey;
+        text-align: center; }
+        body .app table td .numbrBox {
+          position: absolute;
+          top: 5px;
+          right: 5px; }
+    body .app .player {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: red;
+      transition: .5s; }
+  body .textBoxCharacter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    font-size: 30px;
+    font-weight: 900;
+    transition: .5s; }
