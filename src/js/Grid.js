@@ -34,7 +34,8 @@ class Grid{
                 cell.id = `${i}${j}`  
                 positionStorage.forEach(position => {
                     if(position[0] === i && position[1] === j){
-                        cell.style.background = 'black';
+                        //cell.style.background = 'black';
+                        cell.className = 'black';
                         let numberBoxCell = Math.floor(Math.random() * +this.maxNumberBoxStorage + 1);
                         let numberContainer = document.createElement('div');
                         numberContainer.className = 'numbrBox';

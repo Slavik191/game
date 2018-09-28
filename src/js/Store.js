@@ -7,8 +7,8 @@ class Store{
         this.fieldSize = fieldSize;
     }
 
-    putStorage(){
-        this.numderBoxStore++;
+    putStorage(value){
+        this.numderBoxStore += value ;
         this.store.innerHTML = `Ящиков: ${this.numderBoxStore}`;
     }
 
