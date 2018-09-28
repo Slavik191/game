@@ -14,6 +14,12 @@ body {
   body .app {
     min-width: 100%;
     min-height: 100vh; }
+
+@keyframes emergence {
+  from {
+    top: -355px; }
+  to {
+    top: 0; } }
     body .app form {
       position: absolute;
       top: 0;
@@ -22,6 +28,7 @@ body {
       z-index: 999;
       background: rgba(1, 1, 1, 0.7);
       border-radius: 0 0 10px 10px;
+      animation: emergence .3s linear;
       transition: .3s; }
       body .app form input {
         width: 230px;
@@ -35,7 +42,7 @@ body {
       body .app form h2 {
         color: white; }
 
-@keyframes opac {
+@keyframes opacity {
   from {
     opacity: 0; }
   to {
@@ -45,12 +52,14 @@ body {
       color: white;
       table-layout: fixed;
       margin: 75px 25px 25px 25px;
-      animation: opac .5s linear;
+      animation: opacity .5s linear;
       transition: .5s; }
       body .app table tr:last-child {
         color: black; }
         body .app table tr:last-child td {
           border: 0px; }
+      body .app table .black {
+        background: black; }
       body .app table td {
         position: relative;
         width: 50px;
